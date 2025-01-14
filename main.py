@@ -453,7 +453,7 @@ class BlackjackGame:
         else:
             player.hand[0]['rank'] = int(int(player.hand[0]['rank']) * mult)
         if player == self.dealer:
-            self.dealer_cards_total.config(text=f"Total: At least {self.dealer.hand[0]["rank"]}")
+            self.dealer_cards_total.config(text=f"Total: At least {self.dealer.hand[0]['rank']}")
         elif player == self.player:
             self.player_cards_total.config(text=f"Total:{self.player.total()}")
     
