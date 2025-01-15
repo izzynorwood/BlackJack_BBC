@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import *
+from tkinter import messagebox
 from decks import CardDeck, ExtendedDeck
 from styles import MyButton, MyLabel, MyMenuButton
 from player import Player
@@ -101,6 +102,7 @@ class BlackjackGame:
     def new_round(self):
         self.round += 1
         self.new_round_button.config(state=tk.DISABLED)
+        self.player.has_ace = False
         
         self.goal = 21
         self.winnings = 0
@@ -316,8 +318,22 @@ class BlackjackGame:
                 tk.Label(self.opponent_2_cards_frame, image = self.deck.photo_image_back, bg=BOARD).pack(side=tk.LEFT)
                 tk.Label(self.opponent_2_cards_frame, image = self.deck.photo_image_back, bg=BOARD).pack(side=tk.LEFT)
         
+        if self.player.has_ace:
+            self.ace()
+        
         self.update_total_cards()
-    
+
+    # if player has an ace, a messagebox appears allowing them to change the value
+    def ace(self):
+        ace_question = messagebox.askquestion(title="Ace value", message=f"The current ace value is {self.player.ace_value}.\n Would you like to swap it?")
+        if ace_question == "yes":
+            print("yes")
+            self.player.change_ace_value()
+            if self.player.is_bust(self.goal):
+                self.stay()
+            else:
+                self.player_cards_total.config(text=f"Total:{self.player.total()}")
+                
     # player picks a card and adds it to their hand    
     def hit(self):
         if self.deck.total_cards() >= 1:
@@ -326,9 +342,10 @@ class BlackjackGame:
             self.player.hand.append(card)
             self.update_total_cards()
             self.player_cards_total.config(text=f"Total:{self.player.total()}")
-            
+            if card['rank'] == 'ace':
+                self.ace()
             # if the player goes above the current goal, the round ends
-            if self.player.is_bust(self.goal):
+            elif self.player.is_bust(self.goal):
                 self.stay() 
         # if there are no cards, the game ends  
         else:
