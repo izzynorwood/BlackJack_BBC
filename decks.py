@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 class CardDeck:
     def __init__(self, num_decks, card_width=96,card_height=135):
         suits = ['h', 'd', 'c', 's']
-        ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'j', 'q', 'k']
+        ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'j', 'q', 'k', 'ace']
         self.deck = []
         image_back = Image.open("resources/card_back.png")  
         resized_image_back = image_back.resize((card_width, card_height), resample=0)  
