@@ -34,7 +34,8 @@ class Player:
             self.bet = random.randint(0, int(self.bank/2))
         if self.bank == 1:
             self.bet = random.randint(0, 1)
-    
+
+    # changes the ace value 
     def change_ace_value(self):
         if self.ace_value == 1:
             self.ace_value = 11
