@@ -1,13 +1,8 @@
 import tkinter as tk
 
-BOARD_LIGHT = "#46653c"
-GREEN = "#3B413C"
-FONT = "Arial Narrow"
 BOARD = "#011627"
 BLACK = "#01101c"
-INDIGO = "#7D83FF"
 WHITE = "#E4DFDA"
-ROSEEBONY = "#734349"
 
 class MyButton(tk.Button):
     def __init__(self, master=None, **kwargs):
