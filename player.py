@@ -8,6 +8,8 @@ class Player:
         self.bank = bank
         self.bet = 0
         self.wins = 0
+        self.ace_value = 1
+        self.has_ace = False
     
     # returns the total value of the player's hand
     def total(self):
@@ -15,6 +17,9 @@ class Player:
         for each in self.hand:
             if each['rank'] in face_cards:
                 total += 11
+            elif each['rank'] == 'ace':
+                total += self.ace_value
+                self.has_ace = True
             else:
                 total += int(each['rank'])
         return total
@@ -29,3 +34,9 @@ class Player:
             self.bet = random.randint(0, int(self.bank/2))
         if self.bank == 1:
             self.bet = random.randint(0, 1)
+    
+    def change_ace_value(self):
+        if self.ace_value == 1:
+            self.ace_value = 11
+        else:
+            self.ace_value = 1
