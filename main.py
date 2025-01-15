@@ -463,7 +463,7 @@ class BlackjackGame:
         self.end_game_label.config(text=f"Total pot: {self.winnings}")
         
 
-if __name__ == "__main__":
+def main():
     root = tk.Tk()
     root.geometry("1200x720")
     root.resizable(True,True)
@@ -471,3 +471,6 @@ if __name__ == "__main__":
     root.configure(background=BLACK)
     MainMenu(root)
     root.mainloop()
+    
+if __name__ == "__main__":
+    main()
